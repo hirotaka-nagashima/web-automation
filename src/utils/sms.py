@@ -9,7 +9,7 @@ class SMS:
 
     def __init__(self, browser_):
         self._tab_id = None  # to switch tabs
-        self._browser = browser_  # type: browser.Browser
+        self._browser: browser.Browser = browser_
 
     def connect(self):
         """Opens Messages for web in a current tab."""

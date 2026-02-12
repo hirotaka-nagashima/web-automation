@@ -1,11 +1,9 @@
 import abc
 import re
-from typing import Optional
 
 from selenium.webdriver.common import by
 from selenium.webdriver.remote import webdriver
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support import ui
+from selenium.webdriver.support import expected_conditions, ui
 
 from browser import ec
 
@@ -15,7 +13,7 @@ class Browser(abc.ABC):
 
     @abc.abstractmethod
     def __init__(self):
-        self._driver = None  # type: Optional[webdriver.WebDriver]
+        self._driver: webdriver.WebDriver | None = None
 
     @property
     def url(self):
@@ -120,7 +118,6 @@ class Browser(abc.ABC):
 
     def wait_any_display(self, *selectors, timeout=60):
         locators = [(by.By.CSS_SELECTOR, s) for s in selectors]
-        ecs = [expected_conditions.visibility_of_element_located(l_)
-               for l_ in locators]
+        ecs = [expected_conditions.visibility_of_element_located(l_) for l_ in locators]
         any_ec = ec.AnyEC(*ecs)
         ui.WebDriverWait(self._driver, timeout).until(any_ec)
