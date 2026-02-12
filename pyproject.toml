@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "web-automation"
+version = "0.1.0"
+description = "Do more in less time."
+readme = "README.md"
+authors = ["Nagashima Hirotaka"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selenium = "^4.27.1"
+chromedriver-binary = "^133.0.6943.53.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = ">=0.8.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+ignore = []
